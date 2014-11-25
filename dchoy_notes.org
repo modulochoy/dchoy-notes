@@ -1,0 +1,116 @@
+* nano
+  ^ = ctrl
+** ^G nano help
+** ^R read an existing file into nano -- inserted at the current cursor position
+** ^T opens a browser for selecting files
+** ^L refresh screen
+** ^O save buffer
+** ^X close buffer
+** NAVIGATION
+*** ^A move to beginning of line
+*** ^E move to end of line
+*** ^Y pageup
+*** ^V pagedown
+*** ^P goto prev line
+*** ^N goto next line
+*** ^Space
+*** M-Space
+*** ^W search string or regex
+** EDITING
+*** ^K cut line
+*** ^U paste line
+*** ^C display position of cursor
+*** ^_ goto line and column number
+*** ^\ replace-string or regex
+* vi
+  enter vi command mode: [esc]
+** :i insert before cursor
+** :a append after cursor
+** :wq save and exit
+** :q! exit without saving
+** :e! return to last saved state  
+* sed
+  sed can be used to replace strings in streams
+** substitute (replace string)
+   sed 's/<regex>/<replace with>/'
+** substitute every occurence
+   sed 's/<regex>/<replace with>/g'
+** delete
+   sed '/<regex>/d'
+* awk
+** rm grep files using awk to pipe to .sh
+   find . | grep <regex> | awk '{print "rm "$1}' > tmp.sh
+   source tmp.sh
+** unix to dos linebreaks
+   awk '{printf("%s\r\n",$0)}' unix_file > dos_file
+* linux
+** shell
+*** see required libs
+    objdump -x ./<executable name> | grep NEEDED
+** grep / find
+*** find a file
+    find <dir> -name <filename>
+*** recursive grep find
+    find . | grep -r
+*** mass rename
+**** space to undersore in filename
+     find -type f -name "* *" | rename 's/ /_/g'
+*** pipe grep output to file
+    find . | grep <regex> > tmp.log
+*** find text in file
+    find . -type f -exec grep -il "<string>" {} \;
+** if stuck on lock screen
+*** switch to VT1
+    ctrl + alt + f1
+*** login
+*** NOTE these steps maybe not needed
+**** killall /usr/lib/unity/unity-panel-service
+**** /usr/lib/unity/unity-panel-service --inhibit logout
+*** unity --replace
+* windows
+** batch cmds
+*** if string match
+    if %VARIABLE%==STRING ( do this )
+* android
+** adb
+*** run jar on device
+    adb -s <deivce_id> shell uiautomator runtest <filename>.jar
+* docker
+** copy file from host to image
+*** get full id of container
+    docker inspect -f '{{.Id}}' <container_name>
+*** copy file over
+    sudo cp <local_file_path> /var/lib/docker/aufs/mnt/<full_container_id>/root/<file_name_path>
+       
+* git
+** clone a repo
+   git clone <ssh.git>
+   ex. git clone git@gitrepo.samsungseca.com:redex/rss.git
+** git pull
+** git fetch --tags
+** add and commit changes
+   git add <filename>
+   git commit -a -m '<message>'
+** clone github
+   git remote add origin git@github.com:username/reponame.git
+** update github
+   git push origin master
+* p4
+** recursive file add in folder
+   cd inside folder
+   find . -type f -print | p4 -x - add
+** recursive file type add
+   find . -name *.<ext> -print | p4 -x - add
+** show pending changelists for client
+   p4 changes -c <client> -s pending
+** p4 submit -c <changelist number>
+** p4 sync
+** checkout file
+   p4 edit <filename>
+** p4 change
+** submit changes to files that have not been opened (ex. if sync'd via git)
+   p4 diff -se //<client>/... | p4 -x - edit
+   ex. p4 diff -se //DAVID_CHOY_LINUX_BOX_WORKSPACE/HONEY_TASK/SWRnD/Dev/Knox_Portal/Dev/Tools/scripts/... | p4 -x - edit
+   this will open the files for edit and they will appear on the changelist
+** p4 change -d <changelist number>
+   delete changelist
