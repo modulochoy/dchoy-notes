@@ -114,3 +114,11 @@
    this will open the files for edit and they will appear on the changelist
 ** p4 change -d <changelist number>
    delete changelist
+* terminator
+** CTRL + SHIFT + ..
+** split view vert - E
+** split view horiz - O
+** focus next window - N
+** focus prev window - P
+** close focused window - W
+** focus and enlarge active window - X
