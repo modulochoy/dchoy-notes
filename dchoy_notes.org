@@ -43,22 +43,31 @@
    source tmp.sh
 ** unix to dos linebreaks
    awk '{printf("%s\r\n",$0)}' unix_file > dos_file
+* grep / find
+** find a file
+   find <dir> -name <filename>
+** recursive grep find
+   find . | grep -r
+** mass rename
+*** space to undersore in filename
+    find -type f -name "* *" | rename 's/ /_/g'
+** pipe grep output to file
+   find . | grep <regex> > tmp.log
+** find text in file
+   find . -type f -exec grep -il "<string>" {} \;
+* ssh
+** ssh config
+*** ~/.ssh/config
+*** Host <name>
+    Hostname <ip>
+    User <username>
+    port <portnum>
+    IdentityFile <path to id_rsa>
+    ProxyCommand <ssh some other host config> nc %h %p *only if needed
 * linux
 ** shell
 *** see required libs
     objdump -x ./<executable name> | grep NEEDED
-** grep / find
-*** find a file
-    find <dir> -name <filename>
-*** recursive grep find
-    find . | grep -r
-*** mass rename
-**** space to undersore in filename
-     find -type f -name "* *" | rename 's/ /_/g'
-*** pipe grep output to file
-    find . | grep <regex> > tmp.log
-*** find text in file
-    find . -type f -exec grep -il "<string>" {} \;
 ** if stuck on lock screen
 *** switch to VT1
     ctrl + alt + f1
@@ -72,9 +81,10 @@
 *** if string match
     if %VARIABLE%==STRING ( do this )
 * android
-** adb
-*** run jar on device
-    adb -s <deivce_id> shell uiautomator runtest <filename>.jar
+** uitest-project
+   android create uitest-project -n <name> -t 1 -p <path>
+** adb run method from jar on device
+   adb -s <deivce_id> shell uiautomator runtest <filename>.jar -c <com.uiautomator.example.Test#unlock>
 * docker
 ** copy file from host to image
 *** get full id of container
@@ -122,3 +132,8 @@
 ** focus prev window - P
 ** close focused window - W
 ** focus and enlarge active window - X
+* python
+** pip
+*** installing pip3 for python3
+    sudo apt-get install python3-pip
+    sudo pip3 install <module-name>
