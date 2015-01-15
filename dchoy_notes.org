@@ -73,6 +73,18 @@
     port <portnum>
     IdentityFile <path to id_rsa>
     ProxyCommand <ssh some other host config> nc %h %p *only if needed
+** copy file fomr remote to local
+   scp <user>@<remotehost>:<file> <local dir>
+** copy file from local to remote
+   scp <file> <user>@<remotehost>:<remote dir>
+** copy dir from local to remote
+   scp -r <dir> <user>@<remotehost>:<remote dir>
+** copy file from remote1 to remote2
+   scp <user1>@<remotehost1>:<remote1 dir> \ <user2>@<remotehost2>:<remote2 dir>
+** copy files from local to remote
+   scp <file1> <file2> <user>@<remotehost>:<remote dir>
+** copy files from remote to local
+   scp <user>@<remotehost>:<dir/>\{<file1>,<file2>\} <local dir>
 * linux
 ** shell
 *** see required libs
