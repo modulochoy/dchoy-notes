@@ -65,6 +65,8 @@
 ** find text in file
    find . -type f -exec grep -il "<string>" {} \;
 * ssh
+** setup
+    ssh-keygen -t rsa
 ** ssh config
 *** ~/.ssh/config
 *** Host <name>
@@ -73,18 +75,19 @@
     port <portnum>
     IdentityFile <path to id_rsa>
     ProxyCommand <ssh some other host config> nc %h %p *only if needed
-** copy file fomr remote to local
-   scp <user>@<remotehost>:<file> <local dir>
-** copy file from local to remote
-   scp <file> <user>@<remotehost>:<remote dir>
-** copy dir from local to remote
-   scp -r <dir> <user>@<remotehost>:<remote dir>
-** copy file from remote1 to remote2
-   scp <user1>@<remotehost1>:<remote1 dir> \ <user2>@<remotehost2>:<remote2 dir>
-** copy files from local to remote
-   scp <file1> <file2> <user>@<remotehost>:<remote dir>
-** copy files from remote to local
-   scp <user>@<remotehost>:<dir/>\{<file1>,<file2>\} <local dir>
+** scp
+*** copy file from remote to local
+    scp <user>@<remotehost>:<file> <local dir>
+*** copy file from local to remote
+    scp <file> <user>@<remotehost>:<remote dir>
+*** copy dir from local to remote
+    scp -r <dir> <user>@<remotehost>:<remote dir>
+*** copy file from remote1 to remote2
+    scp <user1>@<remotehost1>:<remote1 dir> \ <user2>@<remotehost2>:<remote2 dir>
+*** copy files from local to remote
+    scp <file1> <file2> <user>@<remotehost>:<remote dir>
+*** copy files from remote to local
+    scp <user>@<remotehost>:<dir/>\{<file1>,<file2>\} <local dir>
 * linux
 ** shell
 *** see required libs
@@ -114,18 +117,39 @@
     sudo cp <local_file_path> /var/lib/docker/aufs/mnt/<full_container_id>/root/<file_name_path>
        
 * git
+** config
+   git config --list OR cat ~/.gitconfig #global
+   cat .git/config #local
 ** clone a repo
    git clone <ssh.git>
    ex. git clone git@gitrepo.samsungseca.com:redex/rss.git
-** git pull
 ** git fetch --tags
 ** add and commit changes
    git add <filename>
    git commit -a -m '<message>'
-** clone github
+** remove and commit changes
+   git rm <filename>
+   git commit -m "<message>"
+** github remote
    git remote add origin git@github.com:username/reponame.git
-** update github
-   git push origin master
+   where origin is the remote name and git@github... is the remote url
+** push to remote
+   git push -u origin master #-u param remembers settings for next time
+** diff
+   git diff --staged
+** unstage files
+   git reset <staged file>
+** branch
+   git branch <branch name>
+** list branches
+   git branch
+** switch to branch
+   git checkout <branch name>
+** delete branch
+   git branch -d <branch name>
+** merge
+   first switch to branch that we want to merge into
+   git merge <other branch name>
 * p4
 ** recursive file add in folder
    cd inside folder
