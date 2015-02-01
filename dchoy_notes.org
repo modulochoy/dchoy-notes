@@ -150,6 +150,10 @@
 ** merge
    first switch to branch that we want to merge into
    git merge <other branch name>
+** edit commit message
+   git commit --amend -m "<new commit message>"
+   git push <remote> <branch> --force #if commit was already pushed
+*** commit message with: closes #1 will close issue #1 in gitlab
 * p4
 ** recursive file add in folder
    cd inside folder
