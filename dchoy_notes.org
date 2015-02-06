@@ -7,6 +7,12 @@
 **** mark D
 **** removed marked x
 **** save s
+** moz js repl
+*** C-c C-s: open a MozRepl buffer and switch to it
+*** C-c C-l: save current buffer and load in MozRepl
+*** C-M-x: send current function (c-mark-function) to MozRepl
+*** C-c C-c: send current function to MozRepl and switch to it
+*** C-c C-r: send current region to MozRepl
 * nano
   ^ = ctrl
 ** ^G nano help
