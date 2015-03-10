@@ -188,6 +188,10 @@
 ** close focused window - W
 ** focus and enlarge active window - X
 * python
+** args
+   import sys
+   len(sys.argv)
+   sys.argv[i]
 ** pip
 *** installing pip3 for python3
     sudo apt-get install python3-pip
@@ -207,6 +211,90 @@
 ** printf("%s\n", x ? "true" : "false");//print bool 
 * C++
 ** g++ <src_file_name.cpp> -o <output_file_name> #compile
+* JavaScript
+** closures
+   function f() {
+     var i = 0;
+     return function() {
+       return ++i;
+     };
+   }
+*** usage
+    incrementer = f()
+    incrementer()
+    > 1
+    incrementer()
+    > 2
+** function args
+   function add() {
+     var result = 0;
+     for (var i = 0; i < arguments.length; i++) {
+       result += arguments[i];
+     }
+     return result;
+   }
+** extending objects on the fly
+   function extend(obj) {
+     function E(){}; //constructor function
+     E.prototype = obj;
+     return new E();
+   }
+** functional programming
+   a = [1,2,3,4,5];
+*** map
+    a.map(function(i) {return i*i;});
+**** result
+     [1,4,9,16,25]
+*** filter
+    a.filter(function(i) {return i%2 == 0;})
+**** result
+     [2,4]
+*** reduce
+    a.reduce(function(result, curr, idx, array) {return result+=curr;})
+**** result
+     15
+*** chaining
+    a.filter(function(i) {return i%2==0;}).map(function(i) {return i*i;});
+**** result
+     [4, 16]
+** Function.prototype bind
+   returns a new function that permanently binds the object passed in as the this variable for the function
+*** ex with inner function
+    obj = { num:0,
+      add: function(num2) {
+        helper = function(num2) {
+	  this.num += num2;
+	  return this.num;
+	}.bind(this);
+	return helper(num2);
+      }
+    }
+** exception handling
+*** throwing
+    function dontEven(num) {
+      if(num % 2 == 0) {
+        throw {code: 'even_number',
+	message: 'don't even give me an even num, yo!'};
+      }
+    }
+*** try catch
+    function passNum(num) {
+      try {
+        dontEven(num);
+      } catch(e) {
+        console.log(e.code+':'+e.message);
+	console.log('retrying w/ '+(num+1));
+	dontEven(num+1);
+      }
+    }
+** setTimeout
+   allows code to execute at a delayed interval
+*** ex
+    setTimeout(function() {console.log('why hello')}, 5000);
+** setInterval
+   loops code until clearInterval(pid) is called
+*** ex
+    setInterval(function() {console.log('why hello again')}, 5000);
 * setup
 ** PS1
    export PS1='\[\033[1;33m\]\u\[\033[0;32m\]@\h:\[\033[1;36m\]\W> \[\033[m'
