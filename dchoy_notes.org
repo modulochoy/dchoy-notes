@@ -70,6 +70,12 @@
    find . | grep <regex> > tmp.log
 ** find text in file
    find . -type f -exec grep -il "<string>" {} \;
+* kill pid using grep and awk
+** kill $(ps aux | grep '[k]eyword' | awk '{print $2}')
+   ps lists processes
+   grep filters, [] is a trick to not pick own grep process
+   awk gives second line
+   $(x) execute x
 * ssh
 ** setup
     ssh-keygen -t rsa
